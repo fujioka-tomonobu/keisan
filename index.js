@@ -53,13 +53,17 @@ var event = new function(){
 	var 何問目 = 0;
 	var 一歩距離 = 0;
 	
-	// 引き算変数
-	var 第一項範囲;
-	var 第二項範囲;
-	
 	// たし算変数
-	var 足し算桁数 = 1;
-	var 二桁目の桁数 = 1;
+	var たし算_第一項範囲;
+	var たし算_第二項範囲;
+	
+	// ひき算変数
+	var ひき算_第一項範囲;
+	var ひき算_第二項範囲;
+	
+	// かけ算変数
+	var かけ算_第一項範囲;
+	var かけ算_第二項範囲;
 	
 	var カービ移動回数 = 0;
 	var デデデ移動回数 = 0;
@@ -89,13 +93,16 @@ var event = new function(){
 	 */
 	this.easy = function(){
 		event.startMusic();
-		一問時間 = 5 * 1000;
+		一問時間 = 3 * 1000;
 		
-		第一項範囲 = [5, 19];
-		第二項範囲 = [1, 9];
+		たし算_第一項範囲 = [1, 9];
+		たし算_第二項範囲 = [1, 9];
 		
-		足し算桁数 = 1;
-		二桁目の桁数 = 1;
+		ひき算_第一項範囲 = [5, 19];
+		ひき算_第二項範囲 = [1, 9];
+		
+		かけ算_第一項範囲 = [1, 9];
+		かけ算_第二項範囲 = [1, 9];
 		
 		event.countDown();
 	};
@@ -105,13 +112,16 @@ var event = new function(){
 	 */
 	this.normal = function(){
 		event.startMusic();
-		一問時間 = 15 * 1000;
+		一問時間 = 7 * 1000;
 		
-		第一項範囲 = [10, 50];
-		第二項範囲 = [1, 9];
+		たし算_第一項範囲 = [10, 80];
+		たし算_第二項範囲 = [1, 9];
 		
-		足し算桁数 = 2;
-		二桁目の桁数 = 1;
+		ひき算_第一項範囲 = [10, 50];
+		ひき算_第二項範囲 = [1, 9];
+		
+		かけ算_第一項範囲 = [11, 19];
+		かけ算_第二項範囲 = [2, 5];
 		
 		event.countDown();
 	};
@@ -121,13 +131,16 @@ var event = new function(){
 	 */
 	this.hard = function(){
 		event.startMusic();
-		一問時間 = 5 * 1000;
+		一問時間 = 7 * 1000;
 		
-		第一項範囲 = [1, 99];
-		第二項範囲 = [1, 99];
+		たし算_第一項範囲 = [10, 80];
+		たし算_第二項範囲 = [1, 9];
 		
-		足し算桁数 = 2;
-		二桁目の桁数 = 2;
+		ひき算_第一項範囲 = [1, 99];
+		ひき算_第二項範囲 = [1, 99];
+		
+		かけ算_第一項範囲 = [11, 99];
+		かけ算_第二項範囲 = [2, 9];
 		
 		event.countDown();
 	};
@@ -137,13 +150,16 @@ var event = new function(){
 	 */
 	this.veryhard = function(){
 		event.startMusic();
-		一問時間 = 1.7 * 1000;
+		一問時間 = 2 * 1000;
 		
-		第一項範囲 = [1, 99];
-		第二項範囲 = [1, 99];
+		たし算_第一項範囲 = [10, 99];
+		たし算_第二項範囲 = [1, 99];
 		
-		足し算桁数 = 2;
-		二桁目の桁数 = 2;
+		ひき算_第一項範囲 = [1, 99];
+		ひき算_第二項範囲 = [1, 99];
+		
+		かけ算_第一項範囲 = [11, 99];
+		かけ算_第二項範囲 = [2, 9];
 		
 		event.countDown();
 	};
@@ -212,15 +228,9 @@ var event = new function(){
 
 		何問目++;
 		
-		var num1 = Math.floor(Math.random() * (10 ** 足し算桁数));
-		var num2 = Math.floor(Math.random() * (10 ** 足し算桁数));
+		var num1 = Math.floor(Math.random() * (たし算_第一項範囲[1] - たし算_第一項範囲[0])) + たし算_第一項範囲[0];
+		var num2 = Math.floor(Math.random() * (たし算_第二項範囲[1] - たし算_第二項範囲[0])) + たし算_第二項範囲[0];
 		
-		if(足し算桁数 == 2) {
-			if(二桁目の桁数 == 1) {
-				num2 =  Math.floor(((num2+1) / 10)+1);
-			}
-		}
-
 		var answer = num1 + num2;
 		
 		$('#game-text').html(num1 + " ＋ " + num2);
@@ -231,13 +241,13 @@ var event = new function(){
 	 * ひき算出題
 	 */
 	this.takeMondaiHikizan = function() {
-		$('#next').show();
+				$('#next').show();
 		$('#answer').hide();
 
 		何問目++;
 		
-		var num1 = Math.floor(Math.random() * (第一項範囲[1] - 第一項範囲[0])) + 第一項範囲[0];
-		var num2 = Math.floor(Math.random() * (第二項範囲[1] - 第二項範囲[0])) + 第二項範囲[0];
+		var num1 = Math.floor(Math.random() * (ひき算_第一項範囲[1] - ひき算_第一項範囲[0])) + ひき算_第一項範囲[0];
+		var num2 = Math.floor(Math.random() * (ひき算_第二項範囲[1] - ひき算_第二項範囲[0])) + ひき算_第二項範囲[0];
 		
 		if(num1 < num2) {
 			num2 = Math.floor(Math.random() * num1);
@@ -258,8 +268,9 @@ var event = new function(){
 
 		何問目++;
 		
-		var num1 = Math.floor(Math.random() * (9)) + 1;
-		var num2 = Math.floor(Math.random() * (9)) + 1;
+		var num1 = Math.floor(Math.random() * (かけ算_第一項範囲[1] - かけ算_第一項範囲[0])) + かけ算_第一項範囲[0];
+		var num2 = Math.floor(Math.random() * (かけ算_第二項範囲[1] - かけ算_第二項範囲[0])) + かけ算_第二項範囲[0];
+		
 		var answer = num1 * num2;
 		
 		$('#game-text').html(num1 + " × " + num2);
