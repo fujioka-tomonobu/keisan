@@ -65,6 +65,11 @@ var event = new function(){
 	var かけ算_第一項範囲;
 	var かけ算_第二項範囲;
 	
+	// 割り算変数
+	var わり算_第一項範囲;
+	var わり算_第二項範囲;
+	var 余り;
+	
 	var カービ移動回数 = 0;
 	var デデデ移動回数 = 0;
 	
@@ -104,6 +109,10 @@ var event = new function(){
 		かけ算_第一項範囲 = [1, 9];
 		かけ算_第二項範囲 = [1, 9];
 		
+		わり算_第一項範囲 = [1, 9];
+		わり算_第二項範囲 = [1, 6];
+		余り = false;
+		
 		event.countDown();
 	};
 	
@@ -122,6 +131,10 @@ var event = new function(){
 		
 		かけ算_第一項範囲 = [11, 19];
 		かけ算_第二項範囲 = [2, 5];
+		
+		わり算_第一項範囲 = [2, 9];
+		わり算_第二項範囲 = [2, 9];
+		余り = false;
 		
 		event.countDown();
 	};
@@ -142,6 +155,10 @@ var event = new function(){
 		かけ算_第一項範囲 = [11, 99];
 		かけ算_第二項範囲 = [2, 9];
 		
+		わり算_第一項範囲 = [2, 9];
+		わり算_第二項範囲 = [2, 9];
+		余り = true;
+		
 		event.countDown();
 	};
 	
@@ -160,6 +177,10 @@ var event = new function(){
 		
 		かけ算_第一項範囲 = [11, 99];
 		かけ算_第二項範囲 = [2, 9];
+		
+		わり算_第一項範囲 = [2, 15];
+		わり算_第二項範囲 = [2, 9];
+		余り = true;
 		
 		event.countDown();
 	};
@@ -208,10 +229,12 @@ var event = new function(){
 	this.takeMondai = function() {
 		var n = Math.random();
 		
-		if(n < 0.33) {
+		if(n < 0.20) {
 			event.takeMondaiTashizan();
-		} else if(n < 0.66) {
+		} else if(n < 0.5) {
 			event.takeMondaiHikizan();
+		} else if(n < 0.8) {
+			event.takeMondaiWarizan();
 		} else {
 			event.takeMondaiKakezan();
 		}
@@ -277,6 +300,35 @@ var event = new function(){
 		$('#answer').html(answer);
 	};
 	
+	
+	/**
+	 * わり算出題
+	 */
+	this.takeMondaiWarizan = function() {
+		$('#next').show();
+		$('#answer').hide();
+
+		何問目++;
+		
+		var num2 = Math.floor(Math.random() * (わり算_第一項範囲[1] - わり算_第一項範囲[0])) + わり算_第一項範囲[0];
+		var answer = Math.floor(Math.random() * (わり算_第二項範囲[1] - わり算_第二項範囲[0])) + わり算_第二項範囲[0];
+		
+		var num1 = answer * num2;
+		
+		var amari = 0;
+		if(余り) {
+			amari = Math.floor(Math.random() * num2 );
+			num1 += amari;
+		}
+		
+		$('#game-text').html(num1 + " ÷ " + num2);
+		
+		if(amari == 0) {
+			$('#answer').html(answer);
+		} else {
+			$('#answer').html(answer + " … " + amari);
+		}
+	};
 	
 	
 	/**
