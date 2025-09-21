@@ -194,6 +194,7 @@ var event = new function(){
 		$('#game').show();
 		$('#next').hide();
 		$('#answer').hide();
+		$('#game-text').show();
 		
 		何問目 = 0;
 		カービ移動回数 = 0;
@@ -345,7 +346,7 @@ var event = new function(){
 
 			clearInterval(dededeAnimeId);
 			
-			if(カービ移動回数 > デデデ移動回数) {
+			if(カービ移動回数 >= デデデ移動回数) {
 				event.win();
 			}else{
 				event.lose();
