@@ -340,20 +340,7 @@ var event = new function(){
 		$('#game-text').hide();
 		$('#answer').show();
 		$('#next').hide();
-		
-		// カービゴール
-		if(何問目 >= 問題数) {
-
-			clearInterval(dededeAnimeId);
-			
-			if(カービ移動回数 >= デデデ移動回数) {
-				event.win();
-			}else{
-				event.lose();
-			}
-			return;
-		}
-		
+				
 		// カービィ移動
 		event.moveKirby();
 		
@@ -364,6 +351,19 @@ var event = new function(){
 			$('#answer').hide();
 			$('#next').show();
 			
+			// カービゴール
+			if(何問目 >= 問題数) {
+
+				clearInterval(dededeAnimeId);
+				
+				if(カービ移動回数 >= デデデ移動回数) {
+					event.win();
+				}else{
+					event.lose();
+				}
+				return;
+			}
+
 			event.takeMondai();
 			
 		}, 500);
