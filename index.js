@@ -252,8 +252,8 @@ var event = new function(){
 
 		何問目++;
 		
-		var num1 = Math.floor(Math.random() * (たし算_第一項範囲[1] - たし算_第一項範囲[0])) + たし算_第一項範囲[0];
-		var num2 = Math.floor(Math.random() * (たし算_第二項範囲[1] - たし算_第二項範囲[0])) + たし算_第二項範囲[0];
+		var num1 = Math.floor(Math.random() * (たし算_第一項範囲[1] - たし算_第一項範囲[0] + 1)) + たし算_第一項範囲[0];
+		var num2 = Math.floor(Math.random() * (たし算_第二項範囲[1] - たし算_第二項範囲[0] + 1)) + たし算_第二項範囲[0];
 		
 		var answer = num1 + num2;
 		
@@ -270,8 +270,8 @@ var event = new function(){
 
 		何問目++;
 		
-		var num1 = Math.floor(Math.random() * (ひき算_第一項範囲[1] - ひき算_第一項範囲[0])) + ひき算_第一項範囲[0];
-		var num2 = Math.floor(Math.random() * (ひき算_第二項範囲[1] - ひき算_第二項範囲[0])) + ひき算_第二項範囲[0];
+		var num1 = Math.floor(Math.random() * (ひき算_第一項範囲[1] - ひき算_第一項範囲[0] + 1)) + ひき算_第一項範囲[0];
+		var num2 = Math.floor(Math.random() * (ひき算_第二項範囲[1] - ひき算_第二項範囲[0] + 1)) + ひき算_第二項範囲[0];
 		
 		if(num1 < num2) {
 			num2 = Math.floor(Math.random() * num1);
@@ -292,8 +292,8 @@ var event = new function(){
 
 		何問目++;
 		
-		var num1 = Math.floor(Math.random() * (かけ算_第一項範囲[1] - かけ算_第一項範囲[0])) + かけ算_第一項範囲[0];
-		var num2 = Math.floor(Math.random() * (かけ算_第二項範囲[1] - かけ算_第二項範囲[0])) + かけ算_第二項範囲[0];
+		var num1 = Math.floor(Math.random() * (かけ算_第一項範囲[1] - かけ算_第一項範囲[0] + 1)) + かけ算_第一項範囲[0];
+		var num2 = Math.floor(Math.random() * (かけ算_第二項範囲[1] - かけ算_第二項範囲[0] + 1)) + かけ算_第二項範囲[0];
 		
 		var answer = num1 * num2;
 		
@@ -311,8 +311,8 @@ var event = new function(){
 
 		何問目++;
 		
-		var num2 = Math.floor(Math.random() * (わり算_第一項範囲[1] - わり算_第一項範囲[0])) + わり算_第一項範囲[0];
-		var answer = Math.floor(Math.random() * (わり算_第二項範囲[1] - わり算_第二項範囲[0])) + わり算_第二項範囲[0];
+		var num2 = Math.floor(Math.random() * (わり算_第一項範囲[1] - わり算_第一項範囲[0] + 1)) + わり算_第一項範囲[0];
+		var answer = Math.floor(Math.random() * (わり算_第二項範囲[1] - わり算_第二項範囲[0] + 1)) + わり算_第二項範囲[0];
 		
 		var num1 = answer * num2;
 		
